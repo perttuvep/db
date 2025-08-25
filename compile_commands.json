@@ -1,0 +1,15 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "-o",
+      "obj/file.o",
+      "src/file.c"
+    ],
+    "directory": "/home/sxo/src/c/zero2hero/final-project-z2h-shell",
+    "file": "/home/sxo/src/c/zero2hero/final-project-z2h-shell/src/file.c",
+    "output": "/home/sxo/src/c/zero2hero/final-project-z2h-shell/obj/file.o"
+  }
+]
