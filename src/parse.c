@@ -11,6 +11,10 @@
 #include "parse.h"
 
 void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
+	if(dbhdr == NULL) {	
+		perror("NULL dbhdr");
+		return;
+	}
 	int i = 0;
 	for (; i < dbhdr->count; i++) {
 		printf("Employee %d\n", i);
@@ -22,12 +26,17 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
 
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
+	if(dbhdr == NULL || addstring == NULL) {
+		return STATUS_ERROR;
+	}
     printf("%s\n", addstring);
 
     char *name  = strtok(addstring, ",");
     char *addr  = strtok(NULL, ",");
     char *hours = strtok(NULL, ",");
-
+	if(name == NULL || addr == NULL || hours == NULL|| employees == NULL) {
+		return STATUS_ERROR;
+	}
     printf("%s %s %s\n", name, addr, hours);
 
     // Increment count
@@ -152,9 +161,10 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
 	}
 
 	*headerOut = header;
+	return STATUS_SUCCESS;
 }
 
-int create_db_header(int fd, struct dbheader_t **headerOut) {
+int create_db_header(struct dbheader_t **headerOut) {
 	struct dbheader_t *header = calloc(1, sizeof(struct dbheader_t));
 	if (header == (void*)-1) {
 		printf("Malloc failed to create db header\n");

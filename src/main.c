@@ -16,8 +16,8 @@ void print_usage(char *argv[]) {
 
 int main(int argc, char *argv[]) { 
 	char *filepath = NULL;
-	char *portarg = NULL;
-	unsigned short port = 0;
+	// char *portarg = NULL;
+	// unsigned short port = 0;
 	bool newfile = false;
 	bool list = false;
   char *addstring = NULL;
@@ -35,9 +35,9 @@ int main(int argc, char *argv[]) {
 			case 'f':
 				filepath = optarg;
 				break;
-			case 'p':
-				portarg = optarg;
-				break;
+			// case 'p':
+			// 	portarg = optarg;
+			// 	break;
       case 'a':
         addstring = optarg;
         break;
@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
 			return -1;
 		}
 
-		if (create_db_header(dbfd, &dbhdr) == STATUS_ERROR) {
+		if (create_db_header(&dbhdr) == STATUS_ERROR) {
 			printf("Failed to create database header\n"); 
 			return -1;
 		}
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
 			return -1;
 		}
 
-		if (validate_db_header(dbfd, &dbhdr) == STATUS_ERROR) {
+		if (validate_db_header (dbfd,&dbhdr) == STATUS_ERROR) {
 			printf("Failed to validate database header\n");
 			return -1;
 		}
